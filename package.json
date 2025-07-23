@@ -1,0 +1,34 @@
+{
+  "name": "sticky-notes-all-platforms",
+  "version": "1.0.0",
+  "description": "Cross-platform sticky notes application with Angular, Ionic, Electron, and Firebase",
+  "private": true,
+  "workspaces": [
+    "desktop",
+    "mobile",
+    "web",
+    "shared"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:shared && npm run install:desktop && npm run install:mobile && npm run install:web",
+    "install:shared": "cd shared && npm install",
+    "install:desktop": "cd desktop && npm install",
+    "install:mobile": "cd mobile && npm install",
+    "install:web": "cd web && npm install",
+    "dev:desktop": "cd desktop && npm start",
+    "dev:mobile": "cd mobile && ionic serve",
+    "dev:web": "cd web && npm run dev",
+    "build:all": "npm run build:shared && npm run build:desktop && npm run build:mobile && npm run build:web",
+    "build:shared": "cd shared && npm run build",
+    "build:desktop": "cd desktop && npm run build",
+    "build:mobile": "cd mobile && ionic build",
+    "build:web": "cd web && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

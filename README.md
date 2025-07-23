@@ -21,6 +21,16 @@ A powerful sticky notes application designed to keep you organized across all yo
 
 ## Getting Started
 
+### Current Status
+
+✅ **Project Structure Setup Complete**
+- Monorepo structure with shared library
+- Angular web application configured
+- Ionic mobile application configured  
+- Electron desktop application configured
+- Firebase backend configuration ready
+- TypeScript models and services implemented
+
 ### Prerequisites
 
 - Node.js (v16 or higher)
@@ -35,27 +45,53 @@ git clone https://github.com/yourusername/sticky-notes-all-platforms.git
 cd sticky-notes-all-platforms
 ```
 
-2. Install dependencies for each platform:
+2. Install all dependencies:
+```bash
+npm run install:all
+```
+
+3. Build the shared library:
+```bash
+cd shared && npm run build
+```
+
+### Firebase Setup
+
+Before running the applications, you'll need to set up Firebase:
+
+1. Create a new Firebase project at [Firebase Console](https://console.firebase.google.com)
+2. Enable Authentication, Firestore Database, and Cloud Messaging
+3. Create a web app in your Firebase project
+4. Copy the Firebase configuration and add it to each platform:
+   - Web: `web/src/environments/environment.ts`
+   - Mobile: `mobile/src/environments/environment.ts`
+   - Desktop: Create `desktop/src/firebase-config.js`
+
+5. Deploy Firebase rules and indexes:
+```bash
+cd firebase
+firebase login
+firebase use --add  # Select your project
+firebase deploy --only firestore
+```
+
+### Running the Applications
+
+After setup is complete, you can run each platform:
 
 **Desktop (Electron):**
 ```bash
-cd desktop
-npm install
-npm start
+npm run dev:desktop
 ```
 
 **Mobile (Ionic):**
 ```bash
-cd mobile
-npm install
-ionic serve
+npm run dev:mobile
 ```
 
-**Web:**
+**Web (Angular):**
 ```bash
-cd web
-npm install
-npm run dev
+npm run dev:web
 ```
 
 ## Project Structure
@@ -72,31 +108,7 @@ sticky-notes-all-platforms/
 
 ## Development
 
-This is a monorepo where each platform shares common business logic through the `shared` library.
-
-### Quick Start
-
-1. **Install all dependencies:**
-```bash
-npm run install:all
-```
-
-2. **Build shared library:**
-```bash
-cd shared && npm run build
-```
-
-3. **Start development servers:**
-```bash
-# Web application
-npm run dev:web
-
-# Mobile application  
-npm run dev:mobile
-
-# Desktop application
-npm run dev:desktop
-```
+This is a monorepo where each platform shares common business logic through the `shared` library. Any changes to the shared library require rebuilding it before the changes are reflected in the applications.
 
 ### Desktop Development
 - Built with **Electron**
@@ -123,6 +135,12 @@ npm run dev:desktop
 - Common utilities and constants
 - Platform-agnostic business logic
 
+### Development Workflow
+
+1. Make changes to shared library: `cd shared && npm run build`
+2. Develop platform-specific features in respective directories
+3. Test across all platforms before committing
+
 ## Contributing
 
 1. Fork the repository
@@ -140,13 +158,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you encounter any issues or have questions, please file an issue on the GitHub repository.
 
 ## Roadmap
-
-- [ ] Basic note creation and editing
-- [ ] Bullet point formatting
-- [ ] Notification system
-- [ ] Firebase integration
-- [ ] Cross-platform synchronization
-- [ ] Mobile app development
-- [ ] Desktop app enhancements
-- [ ] Offline mode
-- [ ] Collaboration features
