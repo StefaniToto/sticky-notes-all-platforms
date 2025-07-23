@@ -62,32 +62,66 @@ npm run dev
 
 ```
 sticky-notes-all-platforms/
-├── desktop/          # Electron desktop application
-├── mobile/           # Ionic Capacitor mobile app
-├── web/              # Web application
-├── shared/           # Shared utilities and types
-├── firebase/         # Firebase configuration and functions
-└── docs/             # Documentation
+├── desktop/              # Electron desktop application
+├── mobile/               # Ionic Capacitor mobile app (Angular + Ionic)
+├── web/                  # Angular web application (PWA)
+├── shared/               # Shared TypeScript library (models, services, utils)
+├── firebase/             # Firebase configuration, rules, and functions
+└── docs/                 # Documentation and development guides
 ```
 
 ## Development
 
-Each platform can be developed independently while sharing common business logic and data models.
+This is a monorepo where each platform shares common business logic through the `shared` library.
+
+### Quick Start
+
+1. **Install all dependencies:**
+```bash
+npm run install:all
+```
+
+2. **Build shared library:**
+```bash
+cd shared && npm run build
+```
+
+3. **Start development servers:**
+```bash
+# Web application
+npm run dev:web
+
+# Mobile application  
+npm run dev:mobile
+
+# Desktop application
+npm run dev:desktop
+```
 
 ### Desktop Development
-- Built with Electron
+- Built with **Electron**
 - Cross-platform compatibility for Windows, macOS, and Linux
 - Native system integration for notifications
+- Uses shared TypeScript models and services
 
 ### Mobile Development
-- Built with Ionic Capacitor
+- Built with **Angular + Ionic + Capacitor**
 - Native mobile features integration
 - Push notifications support
+- Shared codebase with web application
 
 ### Web Development
-- Progressive Web App (PWA)
+- Built with **Angular**
+- Progressive Web App (PWA) capabilities
 - Responsive design for all screen sizes
 - Offline capability with service workers
+- Firebase integration for real-time sync
+
+### Shared Library
+- **TypeScript** models and interfaces
+- **Firebase** service configurations  
+- Common utilities and constants
+- Platform-agnostic business logic
 
 ## Contributing
 
